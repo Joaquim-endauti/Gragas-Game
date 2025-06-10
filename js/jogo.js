@@ -30,7 +30,7 @@
       //percorremos todas as divs armazenadas
       for (i = 0; i < divis.length; i++) {
         //verificamos se sao as divs com ids 0 ou 1 ou 2
-        if (divis[i].id == 0 || divis[i].id == 1 || divis[i].id == 2) {
+        if (divis[i].id == 0 || divis[i].id == 1 || divis[i].id == 2 || divis[i].id == 3 ) {
           //alteramos a classe css das divs 0, 1 e 2 (className)
           divis[i].className = "inicial";
         }
@@ -42,6 +42,10 @@
       if (imagem != "") {
         //removemos a imagem do Smile
         imagem.remove();
+      }
+      let erro = document.getElementById("erro");
+      if (erro != ""){
+        erro.remove();
       }
     }
 
@@ -62,9 +66,17 @@
       const img = new Image(100);
       img.id = "imagem";
       //altera o atributo src (source) da imagem criada
-      img.src = "https://upload.wikimedia.org/wikipedia/commons/2/2e/Oxygen480-emotes-face-smile-big.svg";
+      img.src = "https://illustrators.ru/uploads/illustration/image/1077781/square_El__ICON_.jpg";
       //adiciona a imagem criada na div (obj) escolhida pelo jogador (appendChild)
       obj.appendChild(img);
+    }
+
+    function errou(obj) {
+      obj.classname = "errou";
+      const img = new Image (100);
+      img.id = "erro";
+      img.src = "https://pbs.twimg.com/profile_images/1219674154/GragasSquare_400x400.png"
+      obj.appendChild(img)
     }
 
     //Função que sorteia um número aleatório entre 0 e 2 e verifica se o jogador acertou
@@ -92,7 +104,8 @@
           acertos++;
         } else {//se errou a tentativa
           //altera a classe da <div> escolhida pelo jogador para a classe errou
-          obj.className = "errou";
+          errou(obj);
+          obj.className = "errou"
           //armazena a div aonde Smile está escondido (getElementById)
           const objSorteado = document.getElementById(sorteado);
           //chama a funçao acertou para mostrar a div aonde está o Smile
